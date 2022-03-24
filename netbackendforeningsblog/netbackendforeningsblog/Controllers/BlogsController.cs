@@ -11,6 +11,7 @@ using netbackendforeningsblog.Models;
 
 namespace netbackendforeningsblog.Controllers
 {
+    [Route("api/[controller]")]
     public class BlogsController : Controller
     {
         private readonly ForeningsblogContext _context;
@@ -21,12 +22,14 @@ namespace netbackendforeningsblog.Controllers
         }
 
         // GET: Blogs
-        public async Task<ActionResult<List<Blog>>> Index()
+        [HttpGet]
+        public async Task<ActionResult<List<Blog>>> Get()
         {
             var foreningsblogContext = _context.Blogs.Include(b => b.User);
             return await foreningsblogContext.ToListAsync();
         }
 
+        [HttpGet("{id?}")]
         public async Task<ActionResult<Blog>> Details(int? id)
         {
             if (id == null)
@@ -56,7 +59,7 @@ namespace netbackendforeningsblog.Controllers
             {
                 _context.Add(blog);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Get));
             }
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", blog.UserId);
             return CreatedAtAction(nameof(Details), new { id = blog.Id }, blog);
@@ -92,7 +95,7 @@ namespace netbackendforeningsblog.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Get));
             }
             return NoContent();
         }
@@ -124,7 +127,7 @@ namespace netbackendforeningsblog.Controllers
             var blog = await _context.Blogs.FindAsync(id);
             _context.Blogs.Remove(blog);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Get));
         }
 
         private bool BlogExists(int id)

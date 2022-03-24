@@ -11,6 +11,7 @@ using netbackendforeningsblog.Models;
 
 namespace netbackendforeningsblog.Controllers
 {
+    [Route("api/[controller]")]
     public class UsersController : Controller
     {
         private readonly ForeningsblogContext _context;
@@ -21,11 +22,13 @@ namespace netbackendforeningsblog.Controllers
         }
 
         // GET: Users
-        public async Task<ActionResult<List<User>>> Index()
+        [HttpGet]
+        public async Task<ActionResult<List<User>>> Get()
         {
             return await _context.Users.ToListAsync();
         }
 
+        [HttpGet("{id?}")]
         public async Task<ActionResult<User>> Details(int? id)
         {
             if (id == null)
@@ -54,7 +57,7 @@ namespace netbackendforeningsblog.Controllers
             {
                 _context.Add(user);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Get));
             }
             return CreatedAtAction(nameof(Details), new { id = user.Id }, user);
         }
@@ -89,7 +92,7 @@ namespace netbackendforeningsblog.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Get));
             }
             return NoContent();
         }
@@ -120,7 +123,7 @@ namespace netbackendforeningsblog.Controllers
             var user = await _context.Users.FindAsync(id);
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Get));
         }
 
         private bool UserExists(int id)

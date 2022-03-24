@@ -11,6 +11,7 @@ using netbackendforeningsblog.Models;
 
 namespace netbackendforeningsblog.Controllers
 {
+    [Route("api/[controller]")]
     public class EventsController : Controller
     {
         private readonly ForeningsblogContext _context;
@@ -21,11 +22,13 @@ namespace netbackendforeningsblog.Controllers
         }
 
         // GET: Events
-        public async Task<ActionResult<List<Event>>> Index()
+        [HttpGet]
+        public async Task<ActionResult<List<Event>>> Get()
         {
             return await _context.Events.ToListAsync();
         }
 
+        [HttpGet("{id?}")]
         public async Task<ActionResult<Event>> Details(int? id)
         {
             if (id == null)
@@ -54,7 +57,7 @@ namespace netbackendforeningsblog.Controllers
             {
                 _context.Add(@event);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Get));
             }
             return CreatedAtAction(nameof(Details), new { id = @event.Id }, @event);
         }
@@ -89,7 +92,7 @@ namespace netbackendforeningsblog.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Get));
             }
             return NoContent();
         }
@@ -120,7 +123,7 @@ namespace netbackendforeningsblog.Controllers
             var @event = await _context.Events.FindAsync(id);
             _context.Events.Remove(@event);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Get));
         }
 
         private bool EventExists(int id)
