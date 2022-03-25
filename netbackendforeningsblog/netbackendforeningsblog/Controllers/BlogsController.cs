@@ -53,6 +53,7 @@ namespace netbackendforeningsblog.Controllers
         public async Task<IActionResult> Create([Bind("Title,Description,UserId,Author")] Blog blog)
         {
             try
+            {
                 if (ModelState.IsValid)
                 {
                     _context.Add(blog);
@@ -61,8 +62,6 @@ namespace netbackendforeningsblog.Controllers
                 }
 
                 return BadRequest();
-            {
-
             }
             catch (Exception ex)
             {
