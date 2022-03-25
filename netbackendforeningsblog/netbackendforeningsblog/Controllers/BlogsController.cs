@@ -48,9 +48,6 @@ namespace netbackendforeningsblog.Controllers
             return blog;
         }
 
-        // POST: Blogs/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,Description,UserId,Author")] Blog blog)
@@ -61,14 +58,11 @@ namespace netbackendforeningsblog.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Get));
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", blog.UserId);
+
             return CreatedAtAction(nameof(Details), new { id = blog.Id }, blog);
         }
 
-        // POST: Blogs/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPut]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,UserId,Author")] Blog blog)
         {
@@ -100,27 +94,7 @@ namespace netbackendforeningsblog.Controllers
             return NoContent();
         }
 
-        // GET: Blogs/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var blog = await _context.Blogs
-                .Include(b => b.User)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (blog == null)
-            {
-                return NotFound();
-            }
-
-            return NoContent();
-        }
-
-        // POST: Blogs/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpDelete]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

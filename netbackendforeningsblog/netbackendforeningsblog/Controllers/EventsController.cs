@@ -46,9 +46,6 @@ namespace netbackendforeningsblog.Controllers
             return @event;
         }
 
-        // POST: Events/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Description,Place,CreatedDateTime,StartDateTime,EndDateTime")] Event @event)
@@ -62,10 +59,7 @@ namespace netbackendforeningsblog.Controllers
             return CreatedAtAction(nameof(Details), new { id = @event.Id }, @event);
         }
 
-        // POST: Events/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPut]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Description,Place,CreatedDateTime,StartDateTime,EndDateTime")] Event @event)
         {
@@ -97,26 +91,7 @@ namespace netbackendforeningsblog.Controllers
             return NoContent();
         }
 
-        // GET: Events/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var @event = await _context.Events
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (@event == null)
-            {
-                return NotFound();
-            }
-
-            return NoContent();
-        }
-
-        // POST: Events/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpDelete]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

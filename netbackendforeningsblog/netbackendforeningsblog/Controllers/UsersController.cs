@@ -49,12 +49,16 @@ namespace netbackendforeningsblog.Controllers
         // POST: Users/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost(Name = "Create")]
         public async Task<IActionResult> Create([Bind("Id,UserRole,Email,Password,FullName")] User user)
         {
             if (ModelState.IsValid)
             {
+                if (string.IsNullOrEmpty(user.Email) ||
+                    string.IsNullOrEmpty(user.Password) ||
+                    string.IsNullOrEmpty(user.FullName))
+                    return BadRequest();
+
                 _context.Add(user);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Get));
@@ -62,10 +66,7 @@ namespace netbackendforeningsblog.Controllers
             return CreatedAtAction(nameof(Details), new { id = user.Id }, user);
         }
 
-        // POST: Users/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPut]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,UserRole,Email,Password,FullName")] User user)
         {
@@ -97,26 +98,7 @@ namespace netbackendforeningsblog.Controllers
             return NoContent();
         }
 
-        // GET: Users/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var user = await _context.Users
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            return NoContent();
-        }
-
-        // POST: Users/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpDelete]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

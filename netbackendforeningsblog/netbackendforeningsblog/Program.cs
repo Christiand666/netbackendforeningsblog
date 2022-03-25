@@ -27,6 +27,16 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.MapControllers();
+app.UseCors(x => x
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+
+//app.MapControllers();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Users}/{action=Get}/{id?}");
+
 
 app.Run();
