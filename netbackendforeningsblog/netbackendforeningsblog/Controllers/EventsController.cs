@@ -48,15 +48,24 @@ namespace netbackendforeningsblog.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Description,Place,CreatedDateTime,StartDateTime,EndDateTime")] Event @event)
+        public async Task<IActionResult> Create([Bind("Description,Place,CreatedDateTime,StartDateTime,EndDateTime")] Event @event)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _context.Add(@event);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Get));
+                if (ModelState.IsValid)
+                {
+                    _context.Add(@event);
+                    await _context.SaveChangesAsync();
+                    return CreatedAtAction(nameof(Details), new { id = @event.Id }, @event);
+                }
+
+                return BadRequest();
+
             }
-            return CreatedAtAction(nameof(Details), new { id = @event.Id }, @event);
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPut]

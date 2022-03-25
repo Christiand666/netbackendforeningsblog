@@ -50,16 +50,24 @@ namespace netbackendforeningsblog.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Description,UserId,Author")] Blog blog)
+        public async Task<IActionResult> Create([Bind("Title,Description,UserId,Author")] Blog blog)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(blog);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Get));
-            }
+            try
+                if (ModelState.IsValid)
+                {
+                    _context.Add(blog);
+                    await _context.SaveChangesAsync();
+                    return CreatedAtAction(nameof(Details), new { id = blog.Id }, blog);
+                }
 
-            return CreatedAtAction(nameof(Details), new { id = blog.Id }, blog);
+                return BadRequest();
+            {
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPut]

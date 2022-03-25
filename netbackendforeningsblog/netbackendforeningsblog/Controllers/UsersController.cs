@@ -50,20 +50,29 @@ namespace netbackendforeningsblog.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost(Name = "Create")]
-        public async Task<IActionResult> Create([Bind("Id,UserRole,Email,Password,FullName")] User user)
+        public async Task<IActionResult> Create([Bind("UserRole,Email,Password,FullName")] User user)
         {
-            if (ModelState.IsValid)
+            try
             {
-                if (string.IsNullOrEmpty(user.Email) ||
-                    string.IsNullOrEmpty(user.Password) ||
-                    string.IsNullOrEmpty(user.FullName))
-                    return BadRequest();
+                if (ModelState.IsValid)
+                {
+                    if (string.IsNullOrEmpty(user.Email) ||
+                        string.IsNullOrEmpty(user.Password) ||
+                        string.IsNullOrEmpty(user.FullName))
+                        return BadRequest();
 
-                _context.Add(user);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Get));
+                    _context.Add(user);
+                    await _context.SaveChangesAsync();
+                    return CreatedAtAction(nameof(Details), new { id = user.Id }, user);
+                }
+
+                return BadRequest();
+
             }
-            return CreatedAtAction(nameof(Details), new { id = user.Id }, user);
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPut]
