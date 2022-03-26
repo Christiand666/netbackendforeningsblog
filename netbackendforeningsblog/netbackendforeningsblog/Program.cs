@@ -12,7 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 
 
 builder.Services.AddDbContext<ForeningsblogContext>(opt =>
-    opt.UseSqlServer("Data Source=DESKTOP-SHARVJO;Initial Catalog=Foreningsblog;Integrated Security=True"));
+    opt.UseSqlServer("Data Source=DESKTOP-EJMEKGQ;Initial Catalog=ForeningsDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
 
 var app = builder.Build();
 
@@ -23,13 +23,17 @@ var app = builder.Build();
 //    app.UseSwaggerUI();
 //}
 
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.UseCors(x => x
             .AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowCredentials()
             .AllowAnyMethod()
+            .WithOrigins("https://localhost:7282")
             .AllowAnyHeader());
 
 //app.MapControllers();
