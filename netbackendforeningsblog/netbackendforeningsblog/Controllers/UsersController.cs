@@ -28,6 +28,7 @@ namespace netbackendforeningsblog.Controllers
             return await _context.Users.ToListAsync();
         }
 
+
         [HttpGet("{id?}")]
         public async Task<ActionResult<User>> Details(int? id)
         {
