@@ -1,21 +1,27 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+
 
 namespace netbackendforeningsblog.Models
 {
     public class User
     {
         [Key]
-        public int Id { get; set; } 
-        public UserRole UserRole { get; set; }
+        public int Id { get; set; }
         public string Email { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
         public string FullName { get; set; } = string.Empty;
+        public Role Role { get; set; }
+        public string Token { get; set; } = string.Empty;
 
+        [JsonIgnore]
+        public string PasswordHash { get; set; }
     }
-
-    public enum UserRole
+    public enum Role
     {
-        Admin = 0,
-        User = 1 
+        Admin,
+        User
     }
+
+
 }

@@ -40,6 +40,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "BCrypt": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
+            "BCrypt.Net-Core": {
+              "target": "Package",
+              "version": "[1.6.0, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[6.0.3, )"

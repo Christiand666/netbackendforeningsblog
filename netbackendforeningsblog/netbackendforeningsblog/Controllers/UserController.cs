@@ -8,6 +8,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using netbackendforeningsblog.DAL;
 using netbackendforeningsblog.Models;
+using BCrypt.Net;
+using Microsoft.Extensions.Options;
+using WebApi.Authorization;
+using WebApi.Helpers;
+using WebApi.Models.Users;
 
 namespace netbackendforeningsblog.Controllers
 {
@@ -23,14 +28,14 @@ namespace netbackendforeningsblog.Controllers
 
         // GET: Users
         [HttpGet]
-        public async Task<ActionResult<List<User>>> Get()
+        public async Task<ActionResult<List<Models.User>>> Get()
         {
             return await _context.Users.ToListAsync();
         }
 
 
         [HttpGet("{id?}")]
-        public async Task<ActionResult<User>> Details(int? id)
+        public async Task<ActionResult<Models.User>> Details(int? id)
         {
             if (id == null)
             {
@@ -51,7 +56,7 @@ namespace netbackendforeningsblog.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost(Name = "Create")]
-        public async Task<IActionResult> Create([Bind("UserRole,Email,Password,FullName")] User user)
+        public async Task<IActionResult> Create([Bind("UserRole,Email,Password,FullName")] Models.User user)
         {
             try
             {
@@ -78,7 +83,7 @@ namespace netbackendforeningsblog.Controllers
 
         [HttpPut]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,UserRole,Email,Password,FullName")] User user)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,UserRole,Email,Password,FullName")] Models.User user)
         {
             if (id != user.Id)
             {

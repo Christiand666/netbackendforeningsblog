@@ -1,5 +1,13 @@
 using netbackendforeningsblog.DAL;
 using Microsoft.EntityFrameworkCore;
+using BCrypt.Net;
+using Microsoft.Extensions.Options;
+using WebApi.Authorization;
+using WebApi.Helpers;
+using WebApi.Models.Users;
+using netbackendforeningsblog.Controllers;
+using System.Text.Json.Serialization;
+using WebApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +21,28 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddDbContext<ForeningsblogContext>(opt =>
     opt.UseSqlServer("Data Source=DESKTOP-EJMEKGQ;Initial Catalog=ForeningsDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
+
+
+// add services to DI container
+{
+    var services = builder.Services;
+    var env = builder.Environment;
+
+   
+    services.AddCors();
+    services.AddControllers().AddJsonOptions(x =>
+    {
+        // serialize enums as strings in api responses (e.g. Role)
+        x.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
+
+    // configure strongly typed settings object
+    services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+
+    // configure DI for application services
+    services.AddScoped<IJwtUtils, JwtUtils>();
+    services.AddScoped<IUserService, UserService>();
+}
 
 var app = builder.Build();
 
@@ -33,6 +63,13 @@ app.UseCors(x => x
             .AllowAnyHeader()
             .AllowAnyMethod()
              );
+
+app.UseMiddleware<ErrorHandlerMiddleware>();
+
+// custom jwt auth middleware
+app.UseMiddleware<JwtMiddleware>();
+
+app.MapControllers();
 
 //app.MapControllers();
 
