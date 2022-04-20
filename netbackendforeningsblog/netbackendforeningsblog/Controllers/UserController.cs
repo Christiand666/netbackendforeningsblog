@@ -26,6 +26,8 @@ namespace netbackendforeningsblog.Controllers
             _context = context;
         }
 
+
+
         // GET: Users
         [HttpGet]
         public async Task<ActionResult<List<Models.User>>> Get()
