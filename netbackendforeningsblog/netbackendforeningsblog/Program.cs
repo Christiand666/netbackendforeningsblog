@@ -8,6 +8,8 @@ using WebApi.Models.Users;
 using netbackendforeningsblog.Controllers;
 using System.Text.Json.Serialization;
 using WebApi.Services;
+using netbackendforeningsblog.Models;
+using BCryptNet = BCrypt.Net.BCrypt;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -77,5 +79,16 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Users}/{action=Get}/{id?}");
 
+//{
+//    var testUsers = new List<User>
+//    {
+//        new User { Email = "hej",  Password= "1234", FullName = "chris", PasswordHash = BCryptNet.HashPassword("1234"), Role = Role.Admin }
+        
+//    };
 
+//    using var scope = app.Services.CreateScope();
+//    var dataContext = scope.ServiceProvider.GetRequiredService<ForeningsblogContext>();
+//    dataContext.Users.AddRange(testUsers);
+//    dataContext.SaveChanges();
+//}
 app.Run();
