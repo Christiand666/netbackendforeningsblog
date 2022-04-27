@@ -22,7 +22,7 @@ builder.Services.AddEndpointsApiExplorer();
 
 
 builder.Services.AddDbContext<ForeningsblogContext>(opt =>
-    opt.UseSqlServer("Data Source=DESKTOP-EJMEKGQ;Initial Catalog=ForeningsDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
+    opt.UseSqlServer("Data Source=mssql1.unoeuro.com;Initial Catalog=thomasblok_dk_db_softwareudvikling;Persist Security Info=True;User ID=thomasblok_dk;Password=Ea2Rrpz5GDmF"));
 
 
 // add services to DI container

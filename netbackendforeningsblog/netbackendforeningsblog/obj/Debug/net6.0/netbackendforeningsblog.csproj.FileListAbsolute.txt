@@ -533,3 +533,12 @@ C:\Users\chris\source\repos\netbackendforeningsblog\netbackendforeningsblog\netb
 C:\Users\chris\source\repos\netbackendforeningsblog\netbackendforeningsblog\netbackendforeningsblog\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\chris\source\repos\netbackendforeningsblog\netbackendforeningsblog\netbackendforeningsblog\bin\Debug\net6.0\DevOne.Security.Cryptography.BCrypt.dll
 C:\Users\chris\source\repos\netbackendforeningsblog\netbackendforeningsblog\netbackendforeningsblog\bin\Debug\net6.0\BCrypt.Net-Core.dll
+C:\Users\thoma\Documents\Softwareudvikling\DotNet\Eksamensprojekt\netbackendforeningsblog\netbackendforeningsblog\netbackendforeningsblog\bin\Debug\net6.0\DevOne.Security.Cryptography.BCrypt.dll
+C:\Users\thoma\Documents\Softwareudvikling\DotNet\Eksamensprojekt\netbackendforeningsblog\netbackendforeningsblog\netbackendforeningsblog\bin\Debug\net6.0\BCrypt.Net-Core.dll
+C:\Users\thoma\Documents\Softwareudvikling\DotNet\Eksamensprojekt\netbackendforeningsblog\netbackendforeningsblog\netbackendforeningsblog\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\thoma\Documents\Softwareudvikling\DotNet\Eksamensprojekt\netbackendforeningsblog\netbackendforeningsblog\netbackendforeningsblog\bin\Debug\net6.0\System.Data.SqlClient.dll
+C:\Users\thoma\Documents\Softwareudvikling\DotNet\Eksamensprojekt\netbackendforeningsblog\netbackendforeningsblog\netbackendforeningsblog\bin\Debug\net6.0\runtimes\win-arm64\native\sni.dll
+C:\Users\thoma\Documents\Softwareudvikling\DotNet\Eksamensprojekt\netbackendforeningsblog\netbackendforeningsblog\netbackendforeningsblog\bin\Debug\net6.0\runtimes\win-x64\native\sni.dll
+C:\Users\thoma\Documents\Softwareudvikling\DotNet\Eksamensprojekt\netbackendforeningsblog\netbackendforeningsblog\netbackendforeningsblog\bin\Debug\net6.0\runtimes\win-x86\native\sni.dll
+C:\Users\thoma\Documents\Softwareudvikling\DotNet\Eksamensprojekt\netbackendforeningsblog\netbackendforeningsblog\netbackendforeningsblog\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\thoma\Documents\Softwareudvikling\DotNet\Eksamensprojekt\netbackendforeningsblog\netbackendforeningsblog\netbackendforeningsblog\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
