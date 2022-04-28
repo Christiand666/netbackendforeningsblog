@@ -83,7 +83,7 @@ app.MapControllerRoute(
 //    var testUsers = new List<User>
 //    {
 //        new User { Email = "hej",  Password= "1234", FullName = "chris", PasswordHash = BCryptNet.HashPassword("1234"), Role = Role.Admin }
-        
+
 //    };
 
 //    using var scope = app.Services.CreateScope();
