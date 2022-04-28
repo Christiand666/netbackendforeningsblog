@@ -48,7 +48,7 @@ namespace netbackendforeningsblog.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Description,Place,CreatedDateTime,StartDateTime,EndDateTime")] Event @event)
+        public async Task<IActionResult> Create([Bind("Title,Description,Place,CreatedDateTime,StartDateTime,EndDateTime")] Event @event)
         {
             try
             {
