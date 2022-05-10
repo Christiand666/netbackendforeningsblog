@@ -1,4 +1,4 @@
-namespace WebApi.Helpers;
+namespace netbackendforeningsblog.Helpers;
 
 using Microsoft.AspNetCore.Http;
 using System;
@@ -30,15 +30,15 @@ public class ErrorHandlerMiddleware
             switch(error)
             {
                 case AppException e:
-                    // custom application error
+                    // brugerdefineret applikationsfejl
                     response.StatusCode = (int)HttpStatusCode.BadRequest;
                     break;
                 case KeyNotFoundException e:
-                    // not found error
+                    // ikke fundet fejl
                     response.StatusCode = (int)HttpStatusCode.NotFound;
                     break;
                 default:
-                    // unhandled error
+                    // ubehandlet fejl
                     response.StatusCode = (int)HttpStatusCode.InternalServerError;
                     break;
             }

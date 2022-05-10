@@ -2,12 +2,12 @@ using netbackendforeningsblog.DAL;
 using Microsoft.EntityFrameworkCore;
 using BCrypt.Net;
 using Microsoft.Extensions.Options;
-using WebApi.Authorization;
-using WebApi.Helpers;
-using WebApi.Models.Users;
+using netbackendforeningsblog.Authorization;
+using netbackendforeningsblog.Helpers;
+using netbackendforeningsblog.Models.Users;
 using netbackendforeningsblog.Controllers;
 using System.Text.Json.Serialization;
-using WebApi.Services;
+using netbackendforeningsblog.Services;
 using netbackendforeningsblog.Models;
 using BCryptNet = BCrypt.Net.BCrypt;
 

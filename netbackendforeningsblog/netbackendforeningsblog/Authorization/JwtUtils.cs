@@ -1,4 +1,4 @@
-namespace WebApi.Authorization;
+namespace netbackendforeningsblog.Authorization;
 
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -6,7 +6,7 @@ using netbackendforeningsblog.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using WebApi.Helpers;
+using netbackendforeningsblog.Helpers;
 
 public interface IJwtUtils
 {
@@ -25,13 +25,13 @@ public class JwtUtils : IJwtUtils
 
     public string GenerateJwtToken(User user)
     {
-        // generate token that is valid for 7 days
-        var tokenHandler = new JwtSecurityTokenHandler();
+        // generere token, der er gyldig i 69 dage
+                var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
-            Expires = DateTime.UtcNow.AddDays(7),
+            Expires = DateTime.UtcNow.AddDays(1),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
         };
         var token = tokenHandler.CreateToken(tokenDescriptor);
@@ -53,19 +53,18 @@ public class JwtUtils : IJwtUtils
                 IssuerSigningKey = new SymmetricSecurityKey(key),
                 ValidateIssuer = false,
                 ValidateAudience = false,
-                // set clockskew to zero so tokens expire exactly at token expiration time (instead of 5 minutes later)
                 ClockSkew = TimeSpan.Zero
             }, out SecurityToken validatedToken);
 
             var jwtToken = (JwtSecurityToken)validatedToken;
             var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
 
-            // return user id from JWT token if validation successful
+            // returner bruger-id fra JWT-token, hvis valideringen lykkedes
             return userId;
         }
         catch
         {
-            // return null if validation fails
+            // returner null, hvis valideringen mislykkes
             return null;
         }
     }

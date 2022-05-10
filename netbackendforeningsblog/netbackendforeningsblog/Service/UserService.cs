@@ -1,15 +1,16 @@
-namespace WebApi.Services;
-
+namespace netbackendforeningsblog.Services;
 using BCrypt.Net;
 using Microsoft.Extensions.Options;
 using netbackendforeningsblog.DAL;
 using netbackendforeningsblog.Models;
-using WebApi.Authorization;
-using WebApi.Helpers;
-using WebApi.Models.Users;
+using netbackendforeningsblog.Authorization;
+using netbackendforeningsblog.Helpers;
+using netbackendforeningsblog.Models.Users;
+using BCryptNet = BCrypt.Net.BCrypt;
 
 public interface IUserService
 {
+    User Register(User model);
     AuthenticateResponse Authenticate(AuthenticateRequest model);
     IEnumerable<User> GetAll();
     User GetById(int id);
@@ -30,7 +31,23 @@ public class UserService : IUserService
         _jwtUtils = jwtUtils;
         _appSettings = appSettings.Value;
     }
+    public User Register(User model)
+    {
+        var user = _context.Users.Find(model.Email);
+        if (user != null)
+        {
+            throw new KeyNotFoundException("Exist");
+        }
 
+        var testUsers = new User();
+
+        new User { Email = model.Email, Password = model.Password, FullName = model.FullName, PasswordHash = BCryptNet.HashPassword(model.Password), Role = Role.User };
+
+        
+        _context.Users.AddRange(testUsers);
+        _context.SaveChanges();
+        return testUsers;
+    }
 
     public AuthenticateResponse Authenticate(AuthenticateRequest model)
     {
@@ -40,7 +57,7 @@ public class UserService : IUserService
         if (user == null || !BCrypt.Verify(model.Password, user.PasswordHash))
             throw new AppException("Username or password is incorrect");
 
-        // authentication successful so generate jwt token
+        // authentication var succesful genere jwt token
         var jwtToken = _jwtUtils.GenerateJwtToken(user);
 
         return new AuthenticateResponse(user, jwtToken);

@@ -1,4 +1,4 @@
-namespace WebApi.Helpers;
+namespace netbackendforeningsblog.Helpers;
 
 public class AppSettings
 {

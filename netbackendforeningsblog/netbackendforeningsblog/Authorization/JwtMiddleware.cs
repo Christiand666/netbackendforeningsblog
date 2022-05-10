@@ -1,8 +1,8 @@
-namespace WebApi.Authorization;
+namespace netbackendforeningsblog.Authorization;
 
 using Microsoft.Extensions.Options;
-using WebApi.Helpers;
-using WebApi.Services;
+using netbackendforeningsblog.Helpers;
+using netbackendforeningsblog.Services;
 
 public class JwtMiddleware
 {
@@ -21,7 +21,7 @@ public class JwtMiddleware
         var userId = jwtUtils.ValidateJwtToken(token);
         if (userId != null)
         {
-            // attach user to context on successful jwt validation
+            // knytter brugeren til kontekst ved vellykket jwt-validering
             context.Items["User"] = userService.GetById(userId.Value);
         }
 

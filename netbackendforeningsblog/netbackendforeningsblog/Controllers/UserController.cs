@@ -10,9 +10,11 @@ using netbackendforeningsblog.DAL;
 using netbackendforeningsblog.Models;
 using BCrypt.Net;
 using Microsoft.Extensions.Options;
-using WebApi.Authorization;
-using WebApi.Helpers;
-using WebApi.Models.Users;
+using netbackendforeningsblog.Authorization;
+using netbackendforeningsblog.Helpers;
+using netbackendforeningsblog.Models.Users;
+using netbackendforeningsblog.Services;
+using BCryptNet = BCrypt.Net.BCrypt;
 
 namespace netbackendforeningsblog.Controllers
 {
@@ -25,7 +27,7 @@ namespace netbackendforeningsblog.Controllers
         {
             _context = context;
         }
-
+        
 
 
         // GET: Users
@@ -35,6 +37,25 @@ namespace netbackendforeningsblog.Controllers
             return await _context.Users.ToListAsync();
         }
 
+        [HttpPost(Name = "Register")]
+        public IActionResult Register(User model)
+        {
+            var user = _context.Users.Find(model.Email);
+            if (user != null)
+            {
+                throw new KeyNotFoundException("Exist");
+            }
+
+            var testUsers = new User();
+
+            new User { Email = model.Email, Password = model.Password, FullName = model.FullName, PasswordHash = BCryptNet.HashPassword(model.Password), Role = Role.User };
+
+
+            _context.Users.AddRange(testUsers);
+            _context.SaveChanges();
+            return Ok(testUsers);
+
+        }
 
         [HttpGet("{id?}")]
         public async Task<ActionResult<Models.User>> Details(int? id)

@@ -1,4 +1,4 @@
-namespace WebApi.Authorization;
+namespace netbackendforeningsblog.Authorization;
 
 [AttributeUsage(AttributeTargets.Method)]
 public class AllowAnonymousAttribute : Attribute
