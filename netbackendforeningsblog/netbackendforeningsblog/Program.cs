@@ -2,12 +2,12 @@ using netbackendforeningsblog.DAL;
 using Microsoft.EntityFrameworkCore;
 using BCrypt.Net;
 using Microsoft.Extensions.Options;
-using WebApi.Authorization;
-using WebApi.Helpers;
-using WebApi.Models.Users;
+using netbackendforeningsblog.Authorization;
+using netbackendforeningsblog.Helpers;
+using netbackendforeningsblog.Models.Users;
 using netbackendforeningsblog.Controllers;
 using System.Text.Json.Serialization;
-using WebApi.Services;
+using netbackendforeningsblog.Services;
 using netbackendforeningsblog.Models;
 using BCryptNet = BCrypt.Net.BCrypt;
 
@@ -56,7 +56,7 @@ var app = builder.Build();
 //}
 
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
@@ -82,7 +82,7 @@ app.MapControllerRoute(
 //{
 //    var testUsers = new List<User>
 //    {
-//        new User { Email = "hej",  Password= "1234", FullName = "chris", PasswordHash = BCryptNet.HashPassword("1234"), Role = Role.Admin }
+//        new User { Email = "vk",  Password= "123", FullName = "chrisser", PasswordHash = BCryptNet.HashPassword("123"), Role = Role.User }
 
 //    };
 

@@ -1,4 +1,4 @@
-namespace WebApi.Models.Users;
+namespace netbackendforeningsblog.Models.Users;
 
 using netbackendforeningsblog.Models;
 
