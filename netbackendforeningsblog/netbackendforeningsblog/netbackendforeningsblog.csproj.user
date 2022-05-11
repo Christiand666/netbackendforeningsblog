@@ -12,6 +12,7 @@
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
     <WebStackScaffolding_IsViewGenerationSelected>False</WebStackScaffolding_IsViewGenerationSelected>
     <ActiveDebugProfile>netbackendforeningsblog</ActiveDebugProfile>
+    <NameOfLastUsedPublishProfile>C:\Users\thoma\Documents\Softwareudvikling\DotNet\Eksamensprojekt\netbackendforeningsblog\netbackendforeningsblog\netbackendforeningsblog\Properties\PublishProfiles\IISProfile.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
