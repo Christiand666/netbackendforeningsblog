@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "dLuzJPVKi73lD8IKWTCSGeCI0PnRtodCt2tNkWqSoQhGg+vTcir0CDhdNb3mXHyIpDIFRS2JFr3v1H2jkbWtbw==",
+  "dgSpecHash": "mOFaFAnm8wc90XBmddDIVIdbkChSpG2QZL84ywZosVv75tl3xEwiTIztvqIyUD7elfLNGlAWJDlgv3ezePBClg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\chris\\source\\repos\\netbackendforeningsblog\\netbackendforeningsblog\\netbackendforeningsblog\\netbackendforeningsblog.csproj",
+  "projectFilePath": "C:\\Users\\chris\\OneDrive\\Dokumenter\\DeepLearningEksamen\\netbackendforeningsblog\\netbackendforeningsblog\\netbackendforeningsblog\\netbackendforeningsblog.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\chris\\.nuget\\packages\\bcrypt\\1.0.0\\bcrypt.1.0.0.nupkg.sha512",
     "C:\\Users\\chris\\.nuget\\packages\\bcrypt.net-core\\1.6.0\\bcrypt.net-core.1.6.0.nupkg.sha512",

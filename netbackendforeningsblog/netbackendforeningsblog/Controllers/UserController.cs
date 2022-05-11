@@ -37,10 +37,10 @@ namespace netbackendforeningsblog.Controllers
             return await _context.Users.ToListAsync();
         }
 
-        [HttpPost(Name = "Register")]
-        public IActionResult Register(User model)
+        [HttpPost("Register")]
+        public IActionResult Register(string _Email, string _Password, string _Fullname)
         {
-            var user = _context.Users.Find(model.Email);
+            var user = _context.Users.Find(_Email);
             if (user != null)
             {
                 throw new KeyNotFoundException("Exist");
@@ -48,7 +48,7 @@ namespace netbackendforeningsblog.Controllers
 
             var testUsers = new User();
 
-            new User { Email = model.Email, Password = model.Password, FullName = model.FullName, PasswordHash = BCryptNet.HashPassword(model.Password), Role = Role.User };
+            new User { Email = _Email, Password = _Password, FullName = _Fullname, PasswordHash = BCryptNet.HashPassword(_Password), Role = Role.User };
 
 
             _context.Users.AddRange(testUsers);
