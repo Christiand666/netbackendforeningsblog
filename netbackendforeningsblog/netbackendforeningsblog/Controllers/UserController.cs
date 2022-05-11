@@ -37,7 +37,7 @@ namespace netbackendforeningsblog.Controllers
             return await _context.Users.ToListAsync();
         }
 
-        [HttpPost(Name = "Register")]
+        [HttpPost("Register")]
         public IActionResult Register(User model)
         {
             var user = _context.Users.Find(model.Email);
