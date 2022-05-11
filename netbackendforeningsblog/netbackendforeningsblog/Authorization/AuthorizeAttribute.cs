@@ -1,5 +1,4 @@
 namespace netbackendforeningsblog.Authorization;
-
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using netbackendforeningsblog.Models;

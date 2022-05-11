@@ -43,14 +43,12 @@ namespace netbackendforeningsblog.Controllers
             var user = _context.Users.SingleOrDefault(u => u.Email == model.Email);
             if (user != null)
             {
-                throw new KeyNotFoundException("Exist");
+                return BadRequest(new JsonResult(new { message = "Whoops brugeren eksistere" }));
             }
 
-            var testUsers = new User();
+            var testUsers = new User{ Email = model.Email, Password = model.Password, FullName = model.FullName, PasswordHash = BCryptNet.HashPassword(model.Password), Role = Role.User };
 
-            new User { Email = model.Email, Password = model.Password, FullName = model.FullName, PasswordHash = BCryptNet.HashPassword(model.Password), Role = Role.User };
-
-
+           
             _context.Users.AddRange(testUsers);
             _context.SaveChanges();
             return Ok(testUsers);

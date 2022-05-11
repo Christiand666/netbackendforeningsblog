@@ -79,16 +79,4 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Users}/{action=Get}/{id?}");
 
-//{
-//    var testUsers = new List<User>
-//    {
-//        new User { Email = "vk",  Password= "123", FullName = "chrisser", PasswordHash = BCryptNet.HashPassword("123"), Role = Role.User }
-
-//    };
-
-//    using var scope = app.Services.CreateScope();
-//    var dataContext = scope.ServiceProvider.GetRequiredService<ForeningsblogContext>();
-//    dataContext.Users.AddRange(testUsers);
-//    dataContext.SaveChanges();
-//}
 app.Run();
