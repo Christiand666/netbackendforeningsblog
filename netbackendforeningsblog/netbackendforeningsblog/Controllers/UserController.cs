@@ -38,9 +38,9 @@ namespace netbackendforeningsblog.Controllers
         }
 
         [HttpPost("Register")]
-        public IActionResult Register(string _Email, string _Password, string _Fullname)
+        public IActionResult Register([FromBody] User model)
         {
-            var user = _context.Users.Find(_Email);
+            var user = _context.Users.SingleOrDefault(u => u.Email == model.Email);
             if (user != null)
             {
                 throw new KeyNotFoundException("Exist");
@@ -48,7 +48,7 @@ namespace netbackendforeningsblog.Controllers
 
             var testUsers = new User();
 
-            new User { Email = _Email, Password = _Password, FullName = _Fullname, PasswordHash = BCryptNet.HashPassword(_Password), Role = Role.User };
+            new User { Email = model.Email, Password = model.Password, FullName = model.FullName, PasswordHash = BCryptNet.HashPassword(model.Password), Role = Role.User };
 
 
             _context.Users.AddRange(testUsers);

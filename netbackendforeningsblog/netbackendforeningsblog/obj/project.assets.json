@@ -10153,24 +10153,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\chris\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\thoma\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\chris\\OneDrive\\Dokumenter\\DeepLearningEksamen\\netbackendforeningsblog\\netbackendforeningsblog\\netbackendforeningsblog\\netbackendforeningsblog.csproj",
+      "projectUniqueName": "C:\\Users\\thoma\\Documents\\Softwareudvikling\\DotNet\\Eksamensprojekt\\netbackendforeningsblog\\netbackendforeningsblog\\netbackendforeningsblog\\netbackendforeningsblog.csproj",
       "projectName": "netbackendforeningsblog",
-      "projectPath": "C:\\Users\\chris\\OneDrive\\Dokumenter\\DeepLearningEksamen\\netbackendforeningsblog\\netbackendforeningsblog\\netbackendforeningsblog\\netbackendforeningsblog.csproj",
-      "packagesPath": "C:\\Users\\chris\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\chris\\OneDrive\\Dokumenter\\DeepLearningEksamen\\netbackendforeningsblog\\netbackendforeningsblog\\netbackendforeningsblog\\obj\\",
+      "projectPath": "C:\\Users\\thoma\\Documents\\Softwareudvikling\\DotNet\\Eksamensprojekt\\netbackendforeningsblog\\netbackendforeningsblog\\netbackendforeningsblog\\netbackendforeningsblog.csproj",
+      "packagesPath": "C:\\Users\\thoma\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\thoma\\Documents\\Softwareudvikling\\DotNet\\Eksamensprojekt\\netbackendforeningsblog\\netbackendforeningsblog\\netbackendforeningsblog\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\chris\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\thoma\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
