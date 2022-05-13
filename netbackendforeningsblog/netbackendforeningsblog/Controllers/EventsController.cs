@@ -46,9 +46,32 @@ namespace netbackendforeningsblog.Controllers
             return @event;
         }
 
+        [HttpPost("Attend")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Attend([FromBody] int eventId, int userId)
+        {
+            try
+            {
+                if (eventId > 0 && userId > 0)
+                {
+                    _context.SignedupUsers.Add(new SignedupUsers { UserId = userId, EventId = eventId });
+                    await _context.SaveChangesAsync();
+
+                    return Ok();
+                }
+                
+                return BadRequest(new JsonResult(new { message = "Invalid forespørgelse" }));
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Title,Description,Place,CreatedDateTime,StartDateTime,EndDateTime")] Event @event)
+        public async Task<IActionResult> Create([FromBody] Event @event)
         {
             try
             {

@@ -1,0 +1,15 @@
+C:\Users\thoma\Documents\Softwareudvikling\DotNet\Eksamensprojekt\netbackendforeningsblog\netbackendforeningsblog\DockerTest\bin\Release\net6.0\DockerTest.exe
+C:\Users\thoma\Documents\Softwareudvikling\DotNet\Eksamensprojekt\netbackendforeningsblog\netbackendforeningsblog\DockerTest\bin\Release\net6.0\DockerTest.deps.json
+C:\Users\thoma\Documents\Softwareudvikling\DotNet\Eksamensprojekt\netbackendforeningsblog\netbackendforeningsblog\DockerTest\bin\Release\net6.0\DockerTest.runtimeconfig.json
+C:\Users\thoma\Documents\Softwareudvikling\DotNet\Eksamensprojekt\netbackendforeningsblog\netbackendforeningsblog\DockerTest\bin\Release\net6.0\DockerTest.dll
+C:\Users\thoma\Documents\Softwareudvikling\DotNet\Eksamensprojekt\netbackendforeningsblog\netbackendforeningsblog\DockerTest\bin\Release\net6.0\DockerTest.pdb
+C:\Users\thoma\Documents\Softwareudvikling\DotNet\Eksamensprojekt\netbackendforeningsblog\netbackendforeningsblog\DockerTest\obj\Release\net6.0\DockerTest.csproj.AssemblyReference.cache
+C:\Users\thoma\Documents\Softwareudvikling\DotNet\Eksamensprojekt\netbackendforeningsblog\netbackendforeningsblog\DockerTest\obj\Release\net6.0\DockerTest.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\thoma\Documents\Softwareudvikling\DotNet\Eksamensprojekt\netbackendforeningsblog\netbackendforeningsblog\DockerTest\obj\Release\net6.0\DockerTest.AssemblyInfoInputs.cache
+C:\Users\thoma\Documents\Softwareudvikling\DotNet\Eksamensprojekt\netbackendforeningsblog\netbackendforeningsblog\DockerTest\obj\Release\net6.0\DockerTest.AssemblyInfo.cs
+C:\Users\thoma\Documents\Softwareudvikling\DotNet\Eksamensprojekt\netbackendforeningsblog\netbackendforeningsblog\DockerTest\obj\Release\net6.0\DockerTest.csproj.CoreCompileInputs.cache
+C:\Users\thoma\Documents\Softwareudvikling\DotNet\Eksamensprojekt\netbackendforeningsblog\netbackendforeningsblog\DockerTest\obj\Release\net6.0\DockerTest.dll
+C:\Users\thoma\Documents\Softwareudvikling\DotNet\Eksamensprojekt\netbackendforeningsblog\netbackendforeningsblog\DockerTest\obj\Release\net6.0\refint\DockerTest.dll
+C:\Users\thoma\Documents\Softwareudvikling\DotNet\Eksamensprojekt\netbackendforeningsblog\netbackendforeningsblog\DockerTest\obj\Release\net6.0\DockerTest.pdb
+C:\Users\thoma\Documents\Softwareudvikling\DotNet\Eksamensprojekt\netbackendforeningsblog\netbackendforeningsblog\DockerTest\obj\Release\net6.0\DockerTest.genruntimeconfig.cache
+C:\Users\thoma\Documents\Softwareudvikling\DotNet\Eksamensprojekt\netbackendforeningsblog\netbackendforeningsblog\DockerTest\obj\Release\net6.0\ref\DockerTest.dll
