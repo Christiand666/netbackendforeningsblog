@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using netbackendforeningsblog.Authorization;
 using netbackendforeningsblog.DAL;
 using netbackendforeningsblog.Models;
 
@@ -47,8 +48,8 @@ namespace netbackendforeningsblog.Controllers
         }
 
         [HttpPost("Attend")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Attend([FromBody] int eventId, int userId)
+        [Authorize]
+        public async Task<IActionResult> Attend([FromBody] int eventId, [FromBody] int userId)
         {
             try
             {
@@ -69,8 +70,8 @@ namespace netbackendforeningsblog.Controllers
             }
         }
 
+        [Authorize(Role.Admin)]
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([FromBody] Event @event)
         {
             try
