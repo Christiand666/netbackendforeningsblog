@@ -10,12 +10,15 @@ using netbackendforeningsblog.Authorization;
 using netbackendforeningsblog.DAL;
 using netbackendforeningsblog.Models;
 
+
 namespace netbackendforeningsblog.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
-    public class EventsController : Controller
+    public class EventsController : ControllerBase
     {
         private readonly ForeningsblogContext _context;
+        
 
         public EventsController(ForeningsblogContext context)
         {
@@ -49,16 +52,17 @@ namespace netbackendforeningsblog.Controllers
 
         [HttpPost("Attend")]
         [Authorize]
-        public async Task<IActionResult> Attend([FromBody] int eventId, [FromBody] int userId)
+        public async Task<IActionResult> Attend([FromBody]int usermodel, [FromBody]int eventmodel)
         {
             try
             {
-                if (eventId > 0 && userId > 0)
+
+                if (eventmodel > 0 && usermodel > 0)
                 {
-                    _context.SignedupUsers.Add(new SignedupUsers { UserId = userId, EventId = eventId });
+                    var users = _context.SignedupUsers.Add(new SignedupUsers { UserId = usermodel, EventId = eventmodel });
                     await _context.SaveChangesAsync();
 
-                    return Ok();
+                    return Ok(users);
                 }
                 
                 return BadRequest(new JsonResult(new { message = "Invalid forespørgelse" }));

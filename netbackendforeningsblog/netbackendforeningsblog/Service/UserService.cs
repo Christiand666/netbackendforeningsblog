@@ -10,7 +10,7 @@ using BCryptNet = BCrypt.Net.BCrypt;
 
 public interface IUserService
 {
-    User Register(User model);
+    User Deleteuser(int id);
     AuthenticateResponse Authenticate(AuthenticateRequest model);
     IEnumerable<User> GetAll();
     User GetById(int id);
@@ -31,23 +31,7 @@ public class UserService : IUserService
         _jwtUtils = jwtUtils;
         _appSettings = appSettings.Value;
     }
-    public User Register(User model)
-    {
-        var user = _context.Users.Find(model.Email);
-        if (user != null)
-        {
-            throw new KeyNotFoundException("Exist");
-        }
-
-        var testUsers = new User();
-
-        new User { Email = model.Email, Password = model.Password, FullName = model.FullName, PasswordHash = BCryptNet.HashPassword(model.Password), Role = Role.User };
-
-        
-        _context.Users.AddRange(testUsers);
-        _context.SaveChanges();
-        return testUsers;
-    }
+    
 
     public AuthenticateResponse Authenticate(AuthenticateRequest model)
     {
@@ -72,6 +56,13 @@ public class UserService : IUserService
     {
         var user = _context.Users.Find(id);
         if (user == null) throw new KeyNotFoundException("User not found");
+        return user;
+    }
+    public User Deleteuser(int id)
+    {
+        var user = _context.Users.Find(id);
+        if (user == null) throw new KeyNotFoundException("User not found");
+        _context.Users.Remove(user);
         return user;
     }
 }

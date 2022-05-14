@@ -47,5 +47,14 @@ public class UsersController : ControllerBase
         return Ok(user);
     }
 
-    
+    [Authorize(Role.Admin)]
+    [HttpDelete("DeleteUser")]
+    public IActionResult DeleteUsermethod([FromBody] User model)
+    {
+        var users = _userService.Deleteuser(model.Id);
+        return Ok(users);
+
+    }
+
+
 }
