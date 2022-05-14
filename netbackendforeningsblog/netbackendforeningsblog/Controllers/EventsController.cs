@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -9,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using netbackendforeningsblog.Authorization;
 using netbackendforeningsblog.DAL;
 using netbackendforeningsblog.Models;
+using Newtonsoft.Json.Linq;
 
 namespace netbackendforeningsblog.Controllers
 {
@@ -47,9 +49,9 @@ namespace netbackendforeningsblog.Controllers
             return @event;
         }
 
-        [HttpPost("Attend")]
-        [Authorize]
-        public async Task<IActionResult> Attend([FromBody] int eventId, [FromBody] int userId)
+        [HttpPost("Attend/{eventId}/{userId}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Attend(int eventId, int userId)
         {
             try
             {
@@ -60,7 +62,7 @@ namespace netbackendforeningsblog.Controllers
 
                     return Ok();
                 }
-                
+
                 return BadRequest(new JsonResult(new { message = "Invalid forespørgelse" }));
 
             }
