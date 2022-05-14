@@ -50,7 +50,7 @@ namespace netbackendforeningsblog.Controllers
         }
 
         [HttpPost("Attend/{eventId}/{userId}")]
-        [AllowAnonymous]
+        [Authorize]
         public async Task<IActionResult> Attend(int eventId, int userId)
         {
             try
