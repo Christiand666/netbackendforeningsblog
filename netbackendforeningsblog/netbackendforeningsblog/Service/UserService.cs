@@ -44,6 +44,7 @@ public class UserService : IUserService
         // authentication var succesful genere jwt token
         var jwtToken = _jwtUtils.GenerateJwtToken(user);
 
+
         return new AuthenticateResponse(user, jwtToken);
     }
 
