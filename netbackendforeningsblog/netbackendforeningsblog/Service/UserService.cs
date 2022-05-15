@@ -64,6 +64,7 @@ public class UserService : IUserService
         var user = _context.Users.Find(id);
         if (user == null) throw new KeyNotFoundException("User not found");
         _context.Users.Remove(user);
+        _context.SaveChanges();
         return user;
     }
 }

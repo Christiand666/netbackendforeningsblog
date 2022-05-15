@@ -54,14 +54,14 @@ namespace netbackendforeningsblog.Controllers
 
         [HttpPost("Attend/{eventId}/{userId}")]
         [Authorize]
-        public async Task<IActionResult> Attend(int eventId, int userId)
+        public async Task<IActionResult> Attend([FromBody]int eventId, [FromBody]int userId)
         {
             try
             {
 
-                if (eventmodel > 0 && usermodel > 0)
+                if (eventId > 0 && userId > 0)
                 {
-                    var users = _context.SignedupUsers.Add(new SignedupUsers { UserId = usermodel, EventId = eventmodel });
+                    var users = _context.SignedupUsers.Add(new SignedupUsers { UserId = userId, EventId = eventId });
                     await _context.SaveChangesAsync();
 
                     return Ok(users);
