@@ -58,13 +58,17 @@ namespace netbackendforeningsblog.Controllers
         {
             try
             {
-
                 if (eventId > 0 && userId > 0)
                 {
-                    var users = _context.SignedupUsers.Add(new SignedupUsers { UserId = userId, EventId = eventId });
-                    await _context.SaveChangesAsync();
+                    var alreadyExists = _context.SignedupUsers.Any(u => u.Id == userId && u.EventId == eventId);
 
-                    return Ok(users);
+                    if (alreadyExists)
+                    {
+                        _context.SignedupUsers.Add(new SignedupUsers { UserId = userId, EventId = eventId });
+                        await _context.SaveChangesAsync();
+                    }
+
+                    return Ok();
                 }
 
                 return BadRequest(new JsonResult(new { message = "Invalid forespørgelse" }));
@@ -99,7 +103,7 @@ namespace netbackendforeningsblog.Controllers
         }
 
         [HttpPut]
-        [ValidateAntiForgeryToken]
+        [Authorize(Role.Admin)]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Description,Place,CreatedDateTime,StartDateTime,EndDateTime")] Event @event)
         {
             if (id != @event.Id)
@@ -131,7 +135,7 @@ namespace netbackendforeningsblog.Controllers
         }
 
         [HttpDelete]
-        [ValidateAntiForgeryToken]
+        [Authorize(Role.Admin)]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var @event = await _context.Events.FindAsync(id);
