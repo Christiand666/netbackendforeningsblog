@@ -60,18 +60,31 @@ public class UsersController : ControllerBase
     [HttpGet("{id:int}")]
     public IActionResult GetById(int id)
     {
-        // only admins can access other user records
-        var currentUser = (User)HttpContext.Items["User"];
-        if (id != currentUser.Id && currentUser.Role != Role.Admin)
+        try
+        {
+            // only admins can access other user records
+            var currentUser = (User)HttpContext.Items["User"];
+            if(currentUser != null)
+            {
+                if (id != currentUser.Id && currentUser.Role != Role.Admin)
+                    return Unauthorized(new { message = "Unauthorized" });
+
+                var user = _userService.GetById(id);
+                return Ok(user);
+            }
+
             return Unauthorized(new { message = "Unauthorized" });
 
-        var user = _userService.GetById(id);
-        return Ok(user);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
     [Authorize(Role.Admin)]
-    [HttpDelete("DeleteUser")]
-    public IActionResult DeleteUser([FromBody] int id)
+    [HttpDelete("DeleteUser/{id}")]
+    public IActionResult DeleteUser(int id)
     {
         var users = _userService.Deleteuser(id);
         return Ok(users);

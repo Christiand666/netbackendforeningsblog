@@ -69,7 +69,7 @@ namespace netbackendforeningsblog.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,UserId,Author")] Blog blog)
         {
@@ -101,7 +101,7 @@ namespace netbackendforeningsblog.Controllers
             return NoContent();
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

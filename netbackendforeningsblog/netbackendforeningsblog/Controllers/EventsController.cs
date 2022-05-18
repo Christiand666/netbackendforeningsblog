@@ -102,7 +102,7 @@ namespace netbackendforeningsblog.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         [Authorize(Role.Admin)]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Description,Place,CreatedDateTime,StartDateTime,EndDateTime")] Event @event)
         {
@@ -134,7 +134,7 @@ namespace netbackendforeningsblog.Controllers
             return NoContent();
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         [Authorize(Role.Admin)]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
