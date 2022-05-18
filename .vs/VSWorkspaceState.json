@@ -1,10 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\netbackendforeningsblog",
-    "\\netbackendforeningsblog\\netbackendforeningsblog",
-    "\\netbackendforeningsblog\\netbackendforeningsblog\\Controllers"
+    ""
   ],
-  "SelectedNode": "\\netbackendforeningsblog\\netbackendforeningsblog\\Controllers\\UsersController.cs",
+  "SelectedNode": "\\netbackendforeningsblog.sln",
   "PreviewInSolutionExplorer": false
 }

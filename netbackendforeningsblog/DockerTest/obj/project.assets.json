@@ -8,19 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\thoma\\.nuget\\packages\\": {}
+    "C:\\Users\\Kristian\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\thoma\\Documents\\Softwareudvikling\\DotNet\\Eksamensprojekt\\netbackendforeningsblog\\netbackendforeningsblog\\DockerTest\\DockerTest.csproj",
+      "projectUniqueName": "C:\\Users\\Kristian\\source\\Christiand666\\netbackendforeningsblog\\netbackendforeningsblog\\DockerTest\\DockerTest.csproj",
       "projectName": "DockerTest",
-      "projectPath": "C:\\Users\\thoma\\Documents\\Softwareudvikling\\DotNet\\Eksamensprojekt\\netbackendforeningsblog\\netbackendforeningsblog\\DockerTest\\DockerTest.csproj",
-      "packagesPath": "C:\\Users\\thoma\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\thoma\\Documents\\Softwareudvikling\\DotNet\\Eksamensprojekt\\netbackendforeningsblog\\netbackendforeningsblog\\DockerTest\\obj\\",
+      "projectPath": "C:\\Users\\Kristian\\source\\Christiand666\\netbackendforeningsblog\\netbackendforeningsblog\\DockerTest\\DockerTest.csproj",
+      "packagesPath": "C:\\Users\\Kristian\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Kristian\\source\\Christiand666\\netbackendforeningsblog\\netbackendforeningsblog\\DockerTest\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\thoma\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Kristian\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -60,7 +60,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }
