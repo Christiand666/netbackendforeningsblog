@@ -5,15 +5,39 @@ using netbackendforeningsblog.Models;
 using netbackendforeningsblog.Authorization;
 using netbackendforeningsblog.Models.Users;
 using netbackendforeningsblog.Services;
+using netbackendforeningsblog.DAL;
+using BCryptNet = BCrypt.Net.BCrypt;
 
+
+[ApiController]
 [Route("api/[controller]")]
 public class UsersController : ControllerBase
 {
     private IUserService _userService;
+    private readonly ForeningsblogContext _context;
 
-    public UsersController(IUserService userService)
+    public UsersController(IUserService userService, ForeningsblogContext context)
     {
         _userService = userService;
+        _context = context;
+    }
+
+    [HttpPost("Register")]
+    public IActionResult Register([FromBody] User model)
+    {
+        var user = _context.Users.SingleOrDefault(u => u.Email == model.Email);
+        if (user != null)
+        {
+            return BadRequest(new JsonResult(new { message = "Whoops brugeren eksistere" }));
+        }
+
+        var testUsers = new User { Email = model.Email, Password = model.Password, FullName = model.FullName, PasswordHash = BCryptNet.HashPassword(model.Password), Role = Role.User };
+
+
+        _context.Users.AddRange(testUsers);
+        _context.SaveChanges();
+        return Ok(testUsers);
+
     }
 
 
@@ -41,7 +65,7 @@ public class UsersController : ControllerBase
         if (id != currentUser.Id && currentUser.Role != Role.Admin)
             return Unauthorized(new { message = "Unauthorized" });
 
-        var user =  _userService.GetById(id);
+        var user = _userService.GetById(id);
         return Ok(user);
     }
 

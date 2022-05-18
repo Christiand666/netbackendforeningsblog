@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "dF/zCEmKEp3f1ZXOA9kTSe6JWdvZmKyUugZ1X3keNZJuWV4AzsfsJW49rt2xJPXZKz1G1kOnuVW/GZIuSdEpFQ==",
+  "dgSpecHash": "nisvsbjOLyjliDcyH9B4tLmhICgeKzUrnRIvDP8EmbxvSTBCtAWLWaGkSwzCAHjpIXqNcfta3pFcU5sFhSSvPQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Kristian\\source\\Christiand666\\netbackendforeningsblog\\netbackendforeningsblog\\DockerTest\\DockerTest.csproj",
+  "projectFilePath": "C:\\Users\\chris\\source\\repos\\netbackendforeningsblog\\netbackendforeningsblog\\DockerTest\\DockerTest.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

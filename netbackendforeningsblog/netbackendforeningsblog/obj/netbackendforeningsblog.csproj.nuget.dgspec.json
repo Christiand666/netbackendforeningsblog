@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Kristian\\source\\Christiand666\\netbackendforeningsblog\\netbackendforeningsblog\\netbackendforeningsblog\\netbackendforeningsblog.csproj": {}
+    "C:\\Users\\chris\\source\\repos\\netbackendforeningsblog\\netbackendforeningsblog\\netbackendforeningsblog\\netbackendforeningsblog.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Kristian\\source\\Christiand666\\netbackendforeningsblog\\netbackendforeningsblog\\netbackendforeningsblog\\netbackendforeningsblog.csproj": {
+    "C:\\Users\\chris\\source\\repos\\netbackendforeningsblog\\netbackendforeningsblog\\netbackendforeningsblog\\netbackendforeningsblog.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Kristian\\source\\Christiand666\\netbackendforeningsblog\\netbackendforeningsblog\\netbackendforeningsblog\\netbackendforeningsblog.csproj",
+        "projectUniqueName": "C:\\Users\\chris\\source\\repos\\netbackendforeningsblog\\netbackendforeningsblog\\netbackendforeningsblog\\netbackendforeningsblog.csproj",
         "projectName": "netbackendforeningsblog",
-        "projectPath": "C:\\Users\\Kristian\\source\\Christiand666\\netbackendforeningsblog\\netbackendforeningsblog\\netbackendforeningsblog\\netbackendforeningsblog.csproj",
-        "packagesPath": "C:\\Users\\Kristian\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Kristian\\source\\Christiand666\\netbackendforeningsblog\\netbackendforeningsblog\\netbackendforeningsblog\\obj\\",
+        "projectPath": "C:\\Users\\chris\\source\\repos\\netbackendforeningsblog\\netbackendforeningsblog\\netbackendforeningsblog\\netbackendforeningsblog.csproj",
+        "packagesPath": "C:\\Users\\chris\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\chris\\source\\repos\\netbackendforeningsblog\\netbackendforeningsblog\\netbackendforeningsblog\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Kristian\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\chris\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -101,7 +101,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }
