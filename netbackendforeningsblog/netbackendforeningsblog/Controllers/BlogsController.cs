@@ -26,7 +26,13 @@ namespace netbackendforeningsblog.Controllers
         public async Task<ActionResult<List<Blog>>> Get()
         {
             var foreningsblogContext = _context.Blogs.Include(b => b.User);
-            return await foreningsblogContext.ToListAsync();
+            var blogList = await foreningsblogContext.ToListAsync();
+            foreach (var blog in blogList)
+            {
+                blog.User = _context.Users.Find(blog.UserId);
+            }
+
+            return blogList;
         }
 
         [HttpGet("{id?}")]
