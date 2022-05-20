@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using netbackendforeningsblog.Authorization;
 using netbackendforeningsblog.DAL;
 using netbackendforeningsblog.Models;
 
@@ -54,9 +55,9 @@ namespace netbackendforeningsblog.Controllers
             return blog;
         }
 
+        [Authorize]
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Title,Description,UserId,Author")] Blog blog)
+        public async Task<IActionResult> Create([FromBody] Blog blog)
         {
             try
             {
@@ -75,8 +76,8 @@ namespace netbackendforeningsblog.Controllers
             }
         }
 
+        [Authorize]
         [HttpPut("{id}")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,UserId,Author")] Blog blog)
         {
             if (id != blog.Id)
@@ -107,8 +108,8 @@ namespace netbackendforeningsblog.Controllers
             return NoContent();
         }
 
+        [Authorize(Role.Admin)]
         [HttpDelete("{id}")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var blog = await _context.Blogs.FindAsync(id);
