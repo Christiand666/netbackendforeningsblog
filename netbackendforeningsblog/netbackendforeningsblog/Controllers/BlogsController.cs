@@ -26,14 +26,7 @@ namespace netbackendforeningsblog.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Blog>>> Get()
         {
-            var foreningsblogContext = _context.Blogs.Include(b => b.User);
-            var blogList = await foreningsblogContext.ToListAsync();
-            foreach (var blog in blogList)
-            {
-                blog.User = _context.Users.Find(blog.UserId);
-            }
-
-            return blogList;
+            return await _context.Blogs.ToListAsync();
         }
 
         [HttpGet("{id?}")]
@@ -45,7 +38,7 @@ namespace netbackendforeningsblog.Controllers
             }
 
             var blog = await _context.Blogs
-                .Include(b => b.User)
+                .Include(b => b.Id)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (blog == null)
             {
@@ -61,14 +54,10 @@ namespace netbackendforeningsblog.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
-                {
                     _context.Add(blog);
                     await _context.SaveChangesAsync();
                     return CreatedAtAction(nameof(Details), new { id = blog.Id }, blog);
-                }
-
-                return BadRequest();
+               
             }
             catch (Exception ex)
             {

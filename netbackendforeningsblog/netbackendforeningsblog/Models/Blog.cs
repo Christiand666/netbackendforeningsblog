@@ -12,7 +12,7 @@ namespace netbackendforeningsblog.Models
         public string? Description { get; set; }
         [ForeignKey("User")]
         public int UserId { get; set; }
-        public User User { get; set; } = new User();
+        //public User User { get; set; } 
         public string Author { get; set; } = string.Empty;
     }
 }
