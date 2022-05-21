@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -19,14 +20,22 @@ namespace netbackendforeningsblog.Controllers
 
         public BlogsController(ForeningsblogContext context)
         {
-            _context = context; 
+            _context = context;
         }
 
         // GET: Blogs
         [HttpGet]
         public async Task<ActionResult<List<Blog>>> Get()
         {
-            return await _context.Blogs.ToListAsync();
+            try
+            {
+                return await _context.Blogs.ToListAsync();
+            }
+            catch (Exception)
+            {
+
+                return new List<Blog>();
+            }
         }
 
         [HttpGet("{id?}")]
@@ -54,10 +63,11 @@ namespace netbackendforeningsblog.Controllers
         {
             try
             {
-                    _context.Add(blog);
-                    await _context.SaveChangesAsync();
-                    return Ok(CreatedAtAction(nameof(Details), new { id = blog.Id }, blog));
-               
+                _context.Add(blog);
+                await _context.SaveChangesAsync();
+
+                return Ok(CreatedAtAction(nameof(Details), new { id = blog.Id }, blog));
+
             }
             catch (Exception ex)
             {
@@ -81,7 +91,7 @@ namespace netbackendforeningsblog.Controllers
                     _context.Update(blog);
                     await _context.SaveChangesAsync();
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (DbUpdateConcurrencyException ex)
                 {
                     if (!BlogExists(blog.Id))
                     {
@@ -89,7 +99,9 @@ namespace netbackendforeningsblog.Controllers
                     }
                     else
                     {
-                        throw;
+                        var response = new HttpResponseMessage(HttpStatusCode.InternalServerError);
+                        response.Content = new StringContent(ex.Message);
+                        return (IActionResult)Task.FromResult(response);
                     }
                 }
                 return RedirectToAction(nameof(Get));

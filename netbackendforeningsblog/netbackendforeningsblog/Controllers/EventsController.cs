@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -118,7 +119,7 @@ namespace netbackendforeningsblog.Controllers
                     _context.Update(@event);
                     await _context.SaveChangesAsync();
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (DbUpdateConcurrencyException ex)
                 {
                     if (!EventExists(@event.Id))
                     {
@@ -126,7 +127,9 @@ namespace netbackendforeningsblog.Controllers
                     }
                     else
                     {
-                        throw;
+                        var response = new HttpResponseMessage(HttpStatusCode.InternalServerError);
+                        response.Content = new StringContent(ex.Message);
+                        return (IActionResult)Task.FromResult(response);
                     }
                 }
                 return RedirectToAction(nameof(Get));
