@@ -19,7 +19,7 @@ namespace netbackendforeningsblog.Controllers
 
         public BlogsController(ForeningsblogContext context)
         {
-            _context = context;
+            _context = context; 
         }
 
         // GET: Blogs
@@ -99,12 +99,12 @@ namespace netbackendforeningsblog.Controllers
 
         [Authorize(Role.Admin)]
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public Blog Delete(int id)
         {
-            var blog = await _context.Blogs.FindAsync(id);
+            var blog = _context.Blogs.Find(id);
             _context.Blogs.Remove(blog);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Get));
+            _context.SaveChanges();
+            return blog;
         }
 
         private bool BlogExists(int id)

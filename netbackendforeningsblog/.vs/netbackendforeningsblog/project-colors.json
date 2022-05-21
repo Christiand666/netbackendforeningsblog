@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "97016337-0793-4068-88c9-741d3476b466": {
+      "ProjectGuid": "97016337-0793-4068-88c9-741d3476b466",
+      "DisplayName": "netbackendforeningsblog",
+      "ColorIndex": 0
+    },
+    "b8e9734d-4cc2-46ee-b101-1ccda974aaaa": {
+      "ProjectGuid": "b8e9734d-4cc2-46ee-b101-1ccda974aaaa",
+      "DisplayName": "DockerTest",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}
