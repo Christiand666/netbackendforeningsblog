@@ -56,7 +56,7 @@ namespace netbackendforeningsblog.Controllers
             {
                     _context.Add(blog);
                     await _context.SaveChangesAsync();
-                    return CreatedAtAction(nameof(Details), new { id = blog.Id }, blog);
+                    return Ok(CreatedAtAction(nameof(Details), new { id = blog.Id }, blog));
                
             }
             catch (Exception ex)
