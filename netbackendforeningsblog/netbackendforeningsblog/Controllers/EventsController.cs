@@ -139,12 +139,12 @@ namespace netbackendforeningsblog.Controllers
 
         [HttpDelete("{id}")]
         [Authorize(Role.Admin)]
-        public Event Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var eventid = _context.Events.Find(id);
-            _context.Events.Remove(eventid);
-            _context.SaveChanges();
-            return eventid;
+            var @event = await _context.Events.FindAsync(id);
+            _context.Events.Remove(@event);
+            await _context.SaveChangesAsync();
+            return NoContent();
         }
 
         private bool EventExists(int id)
