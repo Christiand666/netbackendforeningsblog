@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -118,7 +119,7 @@ namespace netbackendforeningsblog.Controllers
                     _context.Update(@event);
                     await _context.SaveChangesAsync();
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (DbUpdateConcurrencyException ex)
                 {
                     if (!EventExists(@event.Id))
                     {
@@ -126,7 +127,9 @@ namespace netbackendforeningsblog.Controllers
                     }
                     else
                     {
-                        throw;
+                        var response = new HttpResponseMessage(HttpStatusCode.InternalServerError);
+                        response.Content = new StringContent(ex.Message);
+                        return (IActionResult)Task.FromResult(response);
                     }
                 }
                 return RedirectToAction(nameof(Get));
@@ -136,12 +139,12 @@ namespace netbackendforeningsblog.Controllers
 
         [HttpDelete("{id}")]
         [Authorize(Role.Admin)]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public Event Delete(int id)
         {
-            var @event = await _context.Events.FindAsync(id);
-            _context.Events.Remove(@event);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Get));
+            var eventid = _context.Events.Find(id);
+            _context.Events.Remove(eventid);
+            _context.SaveChanges();
+            return eventid;
         }
 
         private bool EventExists(int id)
