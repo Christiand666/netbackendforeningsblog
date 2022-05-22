@@ -8,28 +8,20 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\yusuf\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\chris\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\yusuf\\Documents\\GitHub\\netbackendforeningsblog\\netbackendforeningsblog\\DockerTest\\DockerTest.csproj",
+      "projectUniqueName": "C:\\Users\\chris\\source\\repos\\netbackendforeningsblog\\netbackendforeningsblog\\DockerTest\\DockerTest.csproj",
       "projectName": "DockerTest",
-      "projectPath": "C:\\Users\\yusuf\\Documents\\GitHub\\netbackendforeningsblog\\netbackendforeningsblog\\DockerTest\\DockerTest.csproj",
-      "packagesPath": "C:\\Users\\yusuf\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\yusuf\\Documents\\GitHub\\netbackendforeningsblog\\netbackendforeningsblog\\DockerTest\\obj\\",
+      "projectPath": "C:\\Users\\chris\\source\\repos\\netbackendforeningsblog\\netbackendforeningsblog\\DockerTest\\DockerTest.csproj",
+      "packagesPath": "C:\\Users\\chris\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\chris\\source\\repos\\netbackendforeningsblog\\netbackendforeningsblog\\DockerTest\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-      ],
       "configFilePaths": [
-        "C:\\Users\\yusuf\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\chris\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -68,7 +60,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }

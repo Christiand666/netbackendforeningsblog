@@ -15,7 +15,8 @@ public class ErrorHandlerMiddleware
     {
         _next = next;
     }
-
+    //Handles error handling for duplicated errors 
+    //proces the http request if not null pproceed to the next request or function
     public async Task Invoke(HttpContext context)
     {
         try
@@ -24,25 +25,26 @@ public class ErrorHandlerMiddleware
         }
         catch (Exception error)
         {
+            //error handling depended on the error cast default 500
             var response = context.Response;
             response.ContentType = "application/json";
 
             switch(error)
             {
                 case AppException e:
-                    // brugerdefineret applikationsfejl
+                    // custom application error (400)
                     response.StatusCode = (int)HttpStatusCode.BadRequest;
                     break;
                 case KeyNotFoundException e:
-                    // ikke fundet fejl
+                    // not found error (404)
                     response.StatusCode = (int)HttpStatusCode.NotFound;
                     break;
                 default:
-                    // ubehandlet fejl
+                    // unhandled error (500)
                     response.StatusCode = (int)HttpStatusCode.InternalServerError;
                     break;
             }
-
+            //cast the error message to json format
             var result = JsonSerializer.Serialize(new { message = error?.Message });
             await response.WriteAsync(result);
         }

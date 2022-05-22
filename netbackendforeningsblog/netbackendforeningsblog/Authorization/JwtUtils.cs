@@ -23,21 +23,24 @@ public class JwtUtils : IJwtUtils
         _appSettings = appSettings.Value;
     }
 
+    //claims the userid to the jwt using the sercret key stored in the app settings (_appsetting)
     public string GenerateJwtToken(User user)
     {
-        // generere token, der er gyldig i 69 dage
-                var tokenHandler = new JwtSecurityTokenHandler();
+        // Generates a token for 69 days
+        //our secret from appsettings
+        var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
-            Expires = DateTime.UtcNow.AddDays(1),
+            Expires = DateTime.UtcNow.AddDays(69),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
         };
         var token = tokenHandler.CreateToken(tokenDescriptor);
         return tokenHandler.WriteToken(token);
     }
 
+    //claims the jwt and returns the userid it belongs too
     public int? ValidateJwtToken(string token)
     {
         if (token == null)
@@ -55,16 +58,16 @@ public class JwtUtils : IJwtUtils
                 ValidateAudience = false,
                 ClockSkew = TimeSpan.Zero
             }, out SecurityToken validatedToken);
-
+            
             var jwtToken = (JwtSecurityToken)validatedToken;
             var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
 
-            // returner bruger-id fra JWT-token, hvis valideringen lykkedes
+            // returns a userid from the jwt if succcesful
             return userId;
         }
         catch
         {
-            // returner null, hvis valideringen mislykkes
+            // else it returns null (expection is cast)
             return null;
         }
     }

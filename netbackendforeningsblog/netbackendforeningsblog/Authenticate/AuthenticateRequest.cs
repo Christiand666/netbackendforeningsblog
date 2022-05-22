@@ -4,7 +4,8 @@ using System.ComponentModel.DataAnnotations;
 
 public class AuthenticateRequest
 {
-    [Required]
+    // required field returns to the api if it is false
+  [Required]
     public string Email { get; set; }
 
     [Required]

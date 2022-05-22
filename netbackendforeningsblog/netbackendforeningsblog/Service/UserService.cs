@@ -6,8 +6,8 @@ using netbackendforeningsblog.Models;
 using netbackendforeningsblog.Authorization;
 using netbackendforeningsblog.Helpers;
 using netbackendforeningsblog.Models.Users;
-using BCryptNet = BCrypt.Net.BCrypt;
 
+//Contains methods from UserService into an interface
 public interface IUserService
 {
     User Deleteuser(int id);
@@ -18,6 +18,7 @@ public interface IUserService
 
 public class UserService : IUserService
 {
+
     private ForeningsblogContext _context;
     private IJwtUtils _jwtUtils;
     private readonly AppSettings _appSettings;
@@ -37,28 +38,30 @@ public class UserService : IUserService
     {
         var user = _context.Users.SingleOrDefault(x => x.Email == model.Email);
 
-        // validate
+        // validate if user exist and the hashed password.
         if (user == null || !BCrypt.Verify(model.Password, user.PasswordHash))
-            throw new AppException("Username or password is incorrect");
+            throw new AppException("Din mail eller password var forkert");
 
-        // authentication var succesful genere jwt token
+        // If authentication was succesful generate a JWT 
         var jwtToken = _jwtUtils.GenerateJwtToken(user);
 
 
         return new AuthenticateResponse(user, jwtToken);
     }
-
+    //Returns all the users
     public IEnumerable<User> GetAll()
     {
         return _context.Users;
     }
-
+    //Get specific User in Url (not used)
     public User GetById(int id) 
     {
         var user = _context.Users.Find(id);
         if (user == null) throw new KeyNotFoundException("User not found");
         return user;
     }
+
+    //Deletes the user
     public User Deleteuser(int id)
     {
         var user = _context.Users.Find(id);

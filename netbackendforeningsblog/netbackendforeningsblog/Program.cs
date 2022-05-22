@@ -1,31 +1,25 @@
 using netbackendforeningsblog.DAL;
 using Microsoft.EntityFrameworkCore;
-using BCrypt.Net;
-using Microsoft.Extensions.Options;
 using netbackendforeningsblog.Authorization;
 using netbackendforeningsblog.Helpers;
-using netbackendforeningsblog.Models.Users;
-using netbackendforeningsblog.Controllers;
 using System.Text.Json.Serialization;
 using netbackendforeningsblog.Services;
-using netbackendforeningsblog.Models;
-using BCryptNet = BCrypt.Net.BCrypt;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add services to the dependency injection container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
 builder.Services.AddDbContext<ForeningsblogContext>(opt =>
-    opt.UseSqlServer("Data Source=mssql1.unoeuro.com;Initial Catalog=thomasblok_dk_db_softwareudvikling;Persist Security Info=True;User ID=thomasblok_dk;Password=Ea2Rrpz5GDmF"));
+ opt.UseSqlServer("Data Source=mssql1.unoeuro.com;Initial Catalog=thomasblok_dk_db_softwareudvikling;Persist Security Info=True;User ID=thomasblok_dk;Password=Ea2Rrpz5GDmF"));
 
 
-// add services to DI container
+// add services to dependency injection container
 {
     var services = builder.Services;
     var env = builder.Environment;
@@ -34,14 +28,14 @@ builder.Services.AddDbContext<ForeningsblogContext>(opt =>
     services.AddCors();
     services.AddControllers().AddJsonOptions(x =>
     {
-        // serialize enums as strings in api responses (e.g. Role)
+        // serialize enums as strings in api responses (Roles)
         x.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
     });
 
     // configure strongly typed settings object
     services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 
-    // configure DI for application services
+    // configure dependency injection for application services
     services.AddScoped<IJwtUtils, JwtUtils>();
     services.AddScoped<IUserService, UserService>();
 }
@@ -49,23 +43,16 @@ builder.Services.AddDbContext<ForeningsblogContext>(opt =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
-//{
     app.UseSwagger();
     app.UseSwaggerUI();
-//}
-
-
-//app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.UseCors(x => x
+    app.UseAuthorization();
+    // global cors policy
+    app.UseCors(x => x
             .AllowAnyOrigin()
             .AllowAnyHeader()
             .AllowAnyMethod()
              );
-
+// global error handler
 app.UseMiddleware<ErrorHandlerMiddleware>();
 
 // custom jwt auth middleware
@@ -73,8 +60,7 @@ app.UseMiddleware<JwtMiddleware>();
 
 app.MapControllers();
 
-//app.MapControllers();
-
+// blueprint how the api/controller gets called
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Users}/{action=Get}/{id?}");
