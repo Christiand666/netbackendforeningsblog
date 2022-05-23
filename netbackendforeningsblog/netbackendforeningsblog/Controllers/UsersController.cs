@@ -40,7 +40,6 @@ public class UsersController : ControllerBase
 
             var testUsers = new User { Email = model.Email, Password = model.Password, FullName = model.FullName, PasswordHash = BCryptNet.HashPassword(model.Password), Role = Role.User };
 
-            //we dont need to validate this in the Userservice so we safe it directly into the database
             _context.Users.AddRange(testUsers);
             _context.SaveChanges();
             return Ok(testUsers);
