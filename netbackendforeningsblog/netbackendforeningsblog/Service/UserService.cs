@@ -14,6 +14,8 @@ public interface IUserService
     AuthenticateResponse Authenticate(AuthenticateRequest model);
     IEnumerable<User> GetAll();
     User GetById(int id);
+
+    User Register(User TestUser);
 }
 
 public class UserService : IUserService
@@ -69,5 +71,12 @@ public class UserService : IUserService
         _context.Users.Remove(user);
         _context.SaveChanges();
         return user;
+    }
+
+    public User Register(User TestUser)
+    {
+        _context.Users.AddRange(TestUser);
+        _context.SaveChanges();
+        return TestUser;
     }
 }

@@ -40,8 +40,8 @@ public class UsersController : ControllerBase
 
             var testUsers = new User { Email = model.Email, Password = model.Password, FullName = model.FullName, PasswordHash = BCryptNet.HashPassword(model.Password), Role = Role.User };
 
-            _context.Users.AddRange(testUsers);
-            _context.SaveChanges();
+
+            _userService.Register(testUsers);
             return Ok(testUsers);
         }
         catch (Exception ex)
