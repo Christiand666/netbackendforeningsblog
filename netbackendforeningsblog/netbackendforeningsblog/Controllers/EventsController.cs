@@ -11,17 +11,15 @@ using Microsoft.EntityFrameworkCore;
 using netbackendforeningsblog.Authorization;
 using netbackendforeningsblog.DAL;
 using netbackendforeningsblog.Models;
-using Newtonsoft.Json.Linq;
-
+using netbackendforeningsblog.Service;
 
 namespace netbackendforeningsblog.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     public class EventsController : ControllerBase
     {
         private readonly ForeningsblogContext _context;
-        
+
 
         public EventsController(ForeningsblogContext context)
         {
@@ -55,7 +53,7 @@ namespace netbackendforeningsblog.Controllers
 
         [HttpPost("Attend/{eventId}/{userId}")]
         [Authorize]
-        public async Task<IActionResult> Attend([FromBody]int eventId, [FromBody]int userId)
+        public async Task<IActionResult> Attend([FromBody] int eventId, [FromBody] int userId)
         {
             try
             {
@@ -137,6 +135,7 @@ namespace netbackendforeningsblog.Controllers
             return NoContent();
         }
 
+
         [HttpDelete("{id}")]
         [Authorize(Role.Admin)]
         public async Task<IActionResult> Delete(int id)
@@ -147,9 +146,85 @@ namespace netbackendforeningsblog.Controllers
             return NoContent();
         }
 
+        [HttpGet("EventWithAttenders/{eventId}")]
+        public async Task<ActionResult<EventAttenders>> EventWithAttenders(int eventId)
+        {
+            var @event = GetEvent(eventId);
+
+            // Event doesn't exist
+            if (@event == null)
+            {
+                return NotFound();
+            }
+
+            var attenders = await GetAttendersOnEventAsync(eventId);
+
+            return new EventAttenders
+            {
+                Attenders = attenders,
+                Event = @event
+            };
+        }
+
+        [HttpGet("InviteUsers/{eventId}")]
+        public async Task<IActionResult> InviteUsers(int eventId)
+        {
+            var @event = GetEvent(eventId);
+
+            // Event doesn't exist
+            if (@event == null)
+            {
+                return NotFound();
+            }
+
+            var userEmails = GerUsersEmails();
+
+            EmailSerivce.PrepareEmail(userEmails, @event.Title);
+
+            return NoContent();
+        }
+
+
+        private Event GetEvent(int id)
+        {
+            // Incorrect event id
+            if (id <= 0)
+            {
+                return null;
+            }
+
+            var @event = _context.Events
+                .FirstOrDefault(ev => ev.Id == id);
+
+            return @event;
+        }
+
+        private async Task<List<User>> GetAttendersOnEventAsync(int eventId)
+        {
+            var signedupUsers = _context.SignedupUsers.Where(su => su.EventId == eventId).ToList();
+
+            var attenderQuery = from u in _context.Users
+                                join s in _context.SignedupUsers on u.Id equals s.UserId
+                                where s.EventId == eventId
+                                select u;
+
+
+            //Removes duplicates and returns List<User>
+            return await attenderQuery.Distinct().ToListAsync();
+        }
+
         private bool EventExists(int id)
         {
             return _context.Events.Any(e => e.Id == id);
+        }
+
+        private List<string> GerUsersEmails()
+        {
+            var userEmailQuery = from u in _context.Users
+                                 where u.Role == Role.User
+                                 select u.Email;
+
+            return userEmailQuery.ToList();
         }
     }
 }
