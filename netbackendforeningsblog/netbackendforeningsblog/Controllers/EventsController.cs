@@ -16,7 +16,7 @@ using Newtonsoft.Json.Linq;
 
 namespace netbackendforeningsblog.Controllers
 {
-    [Authorize]
+   
     [Route("api/[controller]")]
     public class EventsController : ControllerBase
     {
@@ -151,5 +151,68 @@ namespace netbackendforeningsblog.Controllers
         {
             return _context.Events.Any(e => e.Id == id);
         }
+
+        
+        [HttpGet("EventWithComments/{EventId}")]
+        public async Task<ActionResult<EventWithComments>> GeteventWithComments(int EventId)
+        {
+            var Event = await _context.Events.FindAsync(EventId);
+
+            if (Event == null)
+            {
+                return NotFound();
+            }
+
+            var comments = EventComments(EventId);
+
+            EventWithComments EventWithComments = new EventWithComments { Event = Event, Comments = comments };
+
+            return EventWithComments;
+        }
+
+        public List<Comments> EventComments(int eventId)
+        {
+            try
+            {
+                var comments = _context.EventComments.Where(x => x.EventId == eventId).ToList();
+
+                return comments;
+            }
+            catch (Exception e)
+            {
+                return null;
+                throw;
+            }
+        }
+
+        [HttpPost("AddeventComment")]
+        public async Task<ActionResult<EventWithComments>> AddeventComment([FromBody] Comments EventComment)
+        {
+            try
+            {
+                _context.EventComments.Add(new Comments
+                {
+                    EventId = EventComment.EventId,
+                    Comment = EventComment.Comment,
+                    UserId = EventComment.UserId
+                });
+
+                _ = await _context.SaveChangesAsync();
+
+              
+                var eventWithComments = await GeteventWithComments(EventComment.Id);
+
+                return eventWithComments;
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
+    }
+    public class EventWithComments
+    {
+        public Event Event { get; set; }
+        public List<Comments> Comments { get; set; }
     }
 }

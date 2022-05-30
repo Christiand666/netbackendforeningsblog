@@ -12,6 +12,8 @@ namespace netbackendforeningsblog.DAL
         public DbSet<User> Users { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<Blog> Blogs { get; set; }
+
+        public DbSet<Comments> EventComments { get; set; }
         public DbSet<SignedupUsers> SignedupUsers { get; set; }
 
     }

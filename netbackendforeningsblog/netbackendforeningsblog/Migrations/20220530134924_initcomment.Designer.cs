@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using netbackendforeningsblog.DAL;
 
@@ -11,9 +12,10 @@ using netbackendforeningsblog.DAL;
 namespace netbackendforeningsblog.Migrations
 {
     [DbContext(typeof(ForeningsblogContext))]
-    partial class ForeningsblogContextModelSnapshot : ModelSnapshot
+    [Migration("20220530134924_initcomment")]
+    partial class initcomment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
